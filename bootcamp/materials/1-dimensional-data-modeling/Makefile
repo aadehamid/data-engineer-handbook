@@ -8,11 +8,11 @@ up:
 		cp example.env .env; \
         exit 1; \
 	fi
-	docker-compose up -d;
+	docker compose up -d;
 
 .PHONY: down
 down:
-	docker-compose down -v
+	docker compose down -v
 	@if [[ "$(docker ps -q -f name=${DOCKER_CONTAINER})" ]]; then \
 		echo "Terminating running container..."; \
 		docker rm ${DOCKER_CONTAINER}; \
@@ -20,9 +20,9 @@ down:
 
 .PHONY: restart
 restart:
-	docker-compose down -v; \
+	docker compose down -v; \
 	sleep 5; \
-	docker-compose up -d;
+	docker compose up -d;
 
 .PHONY: logs
 logs:
